@@ -6,7 +6,6 @@ require 'net/http'
 require 'net/https'
 require 'json'
 require 'cgi'
-require 'httparty'
 
 # Set slack status using legacy api
 # https://api.slack.com/docs/presence-and-status
