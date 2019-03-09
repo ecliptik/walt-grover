@@ -5,7 +5,7 @@ Automatically update Slack status with current Spotify track.
 
 In order to access the Spotify API you must generate a proper OAuth token following the [Spotify Authorizataion Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/).
 
-This repository containers a simple callback script to get a Refresh Token which may be used in the `walt-grover.rb` script to continaully generate a fresh OAuth token so it doesn't expire.
+This repository containers a simple callback script to get a Refresh Token which may be used in the `walt-grover.rb` script to continually generate a fresh OAuth token so it doesn't expire.
 
 ## Callback Container
 
@@ -29,9 +29,9 @@ Run the callback on localhost on port 9292 passing the CLIENT_ID and CLIENT_SECR
 docker run -it --rm -e CLIENT_ID=*YOURCLIENTID* -e CLIENT_SECRET=*YOURCLIENTSECRET* -p 9292:9292 callback
 ```
 
-In a web borwser go to http://localhost:9292 and click the `login with spotify` link. This will prompt you to authenticate with Spotify and if all goes well will return to a page with an `access_token` and `refresh_token`. The `refresh_token` will be used when running the `walt-grover` container in the next.
+In a web borwser go to http://localhost:9292 and click the `login with spotify` link. This will prompt you to authenticate with Spotify and if all goes well will return to a page with an `access_token` and `refresh_token`. The `refresh_token` will be used when running the `waltgrover` container to update Slack status.
 
-## Setting Slack Status to Current Spotify with Walt Grover
+## Setting Slack Status to Current Spotify Track
 
 Requires
 - [Slack Personal API Token](https://api.slack.com/tokens)
@@ -59,13 +59,13 @@ Build the waltgrover image from `Dockerfile`,
 docker build -t waltgrover .
 ```
 
-Run the waltgrover container by passing a `.env` file with required configuration, add a `-d` to run in background,
+Run the waltgrover container by passing a `.env` file with required configuration,
 
 ```
 docker run -it --rm --env-file=.env waltgrover
 ```
 
-If all goes well the container will query the Spotify API and set Slack status to the current playing track, if nothing is playing a default status of `Nothing currently playing` is set.
+If all goes well the container will query the Spotify API and set Slack status to the current playing track, if nothing is playing a default status and emoji are set based on the `DEFAULT_STATUS` and `DEFAULT_EMOJI` env vars.
 
 Example container output,
 
