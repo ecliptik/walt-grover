@@ -5,7 +5,7 @@ Automatically update Slack status with current Spotify track.
 
 In order to access the Spotify API you must generate a proper OAuth token following the [Spotify Authorizataion Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/).
 
-This repository containers a simple callback script to get a Refresh Token which may be used in the `walt-grover.rb` script to continually generate a fresh OAuth token so it doesn't expire.
+This repository containers a simple callback script to get a Refresh Token which is used in the `walt-grover.rb` script to continually generate a fresh OAuth token.
 
 Before building and running the container, you must create a Spotify App on the developer dashboard,
 
@@ -13,7 +13,7 @@ Before building and running the container, you must create a Spotify App on the 
 
 Copy the `Client ID` and `Client Secret` for the Spotify App as these are needed when running the container.
 
-Set the `Redirect URIs` to `http://localhost:9292/callback` in the Spotify App settigs, if this is does not match exactly then the callback will not work.
+Set the `Redirect URIs` to `http://localhost:9292/callback` in the Spotify App settings, if this match exactly or the callback will not work.
 
 ## Callback Container
 
