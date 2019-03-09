@@ -15,9 +15,9 @@ Copy the `Client ID` and `Client Secret` for the Spotify App as these are needed
 
 Set the `Redirect URIs` to `http://localhost:9292/callback` in the Spotify App settings, this must match exactly or the callback will not work.
 
-## Callback Container
+## Generating Spotify Refresh Token Using Callback
 
-The callback container is only needed once in order to generate a `refresh_token` and does not have to be used again unless the `refresh_token` has expired.
+The callback container is only needed once in order to generate a `refresh_token` and only needed unless the `refresh_token` has expired.
 
 Build the callback image from `Dockerfile.callback`,
 
@@ -31,7 +31,7 @@ Run the callback on localhost on port 9292 passing the CLIENT_ID and CLIENT_SECR
 docker run -it --rm -e CLIENT_ID=*YOURCLIENTID* -e CLIENT_SECRET=*YOURCLIENTSECRET* -p 9292:9292 callback
 ```
 
-In a web borwser go to http://localhost:9292 and click the `login with spotify` link. This will prompt you to authenticate with Spotify and if all goes well will return to a page with an `access_token` and `refresh_token`. The `refresh_token` will be used when running the `waltgrover` container to update Slack status.
+In a web borwser go to http://localhost:9292 and click the `login with spotify` link. Authenticate with Spotify and a page with an `access_token` and `refresh_token` will generate. The `refresh_token` is used when running the `waltgrover` container to update Slack status.
 
 ## Setting Slack Status to Current Spotify Track
 
@@ -67,7 +67,7 @@ Run the waltgrover container by passing a `.env` file with required configuratio
 docker run -it --rm --env-file=.env waltgrover
 ```
 
-If all goes well the container will query the Spotify API and set Slack status to the current playing track, if nothing is playing a default status and emoji are set based on the `DEFAULT_STATUS` and `DEFAULT_EMOJI` env vars.
+The container queries the Spotify API and sets Slack status to the current playing track every 3 minutes, if nothing is playing, a default status and emoji are set based on the `DEFAULT_STATUS` and `DEFAULT_EMOJI` env vars.
 
 Example container output,
 
