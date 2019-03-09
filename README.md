@@ -7,8 +7,6 @@ In order to access the Spotify API you must generate a proper OAuth token follow
 
 This repository containers a simple callback script to get a Refresh Token which may be used in the `walt-grover.rb` script to continually generate a fresh OAuth token so it doesn't expire.
 
-## Callback Container
-
 Before building and running the container, you must create a Spotify App on the developer dashboard,
 
 - https://developer.spotify.com/
@@ -16,6 +14,10 @@ Before building and running the container, you must create a Spotify App on the 
 Copy the `Client ID` and `Client Secret` for the Spotify App as these are needed when running the container.
 
 Set the `Redirect URIs` to `http://localhost:9292/callback` in the Spotify App settigs, if this is does not match exactly then the callback will not work.
+
+## Callback Container
+
+The callback container is only needed once in order to generate a `refresh_token` and does not have to be used again unless the `refresh_token` has expired.
 
 Build the callback image from `Dockerfile.callback`,
 
