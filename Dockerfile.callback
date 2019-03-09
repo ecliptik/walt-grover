@@ -1,0 +1,29 @@
+FROM ruby:2.6-slim AS base
+LABEL maintainer="Micheal Waltz <ecliptik@gmail.com>"
+
+#Setup environment and copy contents
+WORKDIR /app
+
+#Build image
+FROM base AS build
+RUN apt-get update && apt-get install -y \
+    build-essential
+
+#Copy files into /app
+COPY Gemfile* ./
+
+#install gems
+RUN bundle package --all
+RUN bundle install --jobs 5 --without test development --local --system --binstubs
+
+#Runtime image
+FROM base AS run
+COPY --from=build /usr/local /usr/local
+
+COPY . /app
+
+EXPOSE 9292
+
+#App command
+ENTRYPOINT ["bundle"]
+CMD ["exec", "rackup", "-o", "0.0.0.0"]

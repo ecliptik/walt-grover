@@ -1,5 +1,7 @@
 *.gif
+.git
 README.md
 docker-compose.yml
-Dockerfile
+Dockerfile*
 .env
+.env.example
