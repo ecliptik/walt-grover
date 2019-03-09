@@ -13,7 +13,7 @@ Before building and running the container, you must create a Spotify App on the 
 
 Copy the `Client ID` and `Client Secret` for the Spotify App as these are needed when running the container.
 
-Set the `Redirect URIs` to `http://localhost:9292/callback` in the Spotify App settings, if this match exactly or the callback will not work.
+Set the `Redirect URIs` to `http://localhost:9292/callback` in the Spotify App settings, this must match exactly or the callback will not work.
 
 ## Callback Container
 
