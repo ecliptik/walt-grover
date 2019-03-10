@@ -5,7 +5,7 @@ Automatically update Slack status with current Spotify track.
 
 In order to access the Spotify API you must generate a proper OAuth token following the [Spotify Authorizataion Guide](https://developer.spotify.com/documentation/general/guides/authorization-guide/).
 
-This repository containers a simple callback script to get a Refresh Token which is used in the `walt-grover.rb` script to continually generate a fresh OAuth token.
+This repository contains a simple callback script to generate a Refresh Token from the Spotify OAuth API which is required in the `walt-grover.rb` script to continually generate a fresh OAuth token.
 
 Before building and running the container, you must create a Spotify App on the developer dashboard,
 
