@@ -42,7 +42,7 @@ def set_status(status, emoji)
   #Outpu result of slack status update
   case response
   when  Net::HTTPSuccess
-    puts "Successfuly updated Slack"
+    puts "Successfully updated Slack"
     puts "status: #{status}"
     puts "emoji: #{emoji}"
     puts "response code: #{response.code}"
@@ -108,10 +108,20 @@ def current_spotify_track(access_token)
     #Build current_track
     current_track = "#{artist} - #{track}"
     emoji = ENV["MUSIC_EMOJI"]
+    puts "Successfully read current playing track from Spotify"
+    puts "artist: #{artist}"
+    puts "track: #{track}"
+    puts "response code: #{response.code}"
+    puts "response message: #{response.message}"
+
   else
     #Default status if nothing is playing
     current_track = ENV["DEFAULT_STATUS"]
     emoji = ENV["DEFAULT_EMOJI"]
+    puts "Error reading current track from Spotify"
+    puts "response code: #{response.code}"
+    puts "response message: #{response.message}"
+    puts "setting default status: #{current_track}"
   end
 
   return current_track,emoji
@@ -124,13 +134,14 @@ begin
   refresh_token = ENV["REFRESH_TOKEN"]
 
   puts '[' + Time.now.strftime('%b %d %T.%2N') + '] Starting up...'
-  puts "-------------------------"
+  puts "========================="
   while true
     #Generate a new OAuth token every time a track is fetched in order to avoid timeouts
     access_token = refresh(refresh_token)
 
     #Build status
     status,emoji = current_spotify_track(access_token)
+    puts "-------------------------"
 
     #Update slack status
     set_status(status, emoji)
@@ -138,7 +149,7 @@ begin
     #Sleep for 3 minutes
     sleepTime = 180
     puts "Sleeping for #{sleepTime} seconds..."
-    puts "-------------------------"
+    puts "========================="
     sleep(sleepTime)
   end
 end
