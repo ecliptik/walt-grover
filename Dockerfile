@@ -1,5 +1,5 @@
 FROM ruby:2.6-slim AS base
-LABEL maintainer="Micheal Waltz <ecliptik@gmail.com>"
+LABEL maintainer="Micheal Waltz <docker@accounts.ecliptik.com>"
 
 #Setup environment and copy contents
 WORKDIR /app
