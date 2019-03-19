@@ -128,7 +128,8 @@ def current_spotify_track(access_token)
 end
 
 #Run endlessly checking track every 5 minutes and setting status
-#TODO: Probably set some type of check to not update status if track hasn't changed
+#Start with current_status nil to always fetch current playing track on first run
+current_status = nil
 begin
   #Set initial refresh token from env var
   refresh_token = ENV["REFRESH_TOKEN"]
@@ -143,13 +144,19 @@ begin
     status,emoji = current_spotify_track(access_token)
     puts "-------------------------"
 
-    #Update slack status
-    set_status(status, emoji)
+    #Compare status and only updated if changes
+    if current_status == status
+      puts "No change to current playing track, not updating Slack"
+    else
+      #Update slack status
+      set_status(status, emoji)
+    end
 
     #Sleep for 3 minutes
     sleepTime = 180
     puts "Sleeping for #{sleepTime} seconds..."
     puts "========================="
+    current_status = status
     sleep(sleepTime)
   end
 end
