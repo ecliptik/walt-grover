@@ -1,10 +1,9 @@
-FROM ruby:2.6-slim AS base
+FROM ruby:2.7-slim AS base
 LABEL maintainer="Micheal Waltz <docker@accounts.ecliptik.com>"
 
 #Setup environment and copy contents
-WORKDIR /app
-COPY . .
+WORKDIR /usr/src/app
+COPY ./walt-grover.rb .
 
 #App command
-ENTRYPOINT ["ruby"]
-CMD [ "/app/walt-grover.rb" ]
+CMD [ "/usr/src/app//walt-grover.rb" ]
