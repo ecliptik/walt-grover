@@ -3,22 +3,22 @@ GEM
   specs:
     httpclient (2.8.3)
     json (2.3.0)
-    mustermann (1.1.1)
+    mustermann (3.0.0)
       ruby2_keywords (~> 0.0.1)
-    rack (2.1.4)
-    rack-protection (2.0.5)
+    rack (2.2.4)
+    rack-protection (3.0.4)
       rack
-    ruby2_keywords (0.0.2)
-    sinatra (2.0.5)
-      mustermann (~> 1.0)
-      rack (~> 2.0)
-      rack-protection (= 2.0.5)
+    ruby2_keywords (0.0.5)
+    sinatra (3.0.4)
+      mustermann (~> 3.0)
+      rack (~> 2.2, >= 2.2.4)
+      rack-protection (= 3.0.4)
       tilt (~> 2.0)
     slim (4.0.1)
       temple (>= 0.7.6, < 0.9)
       tilt (>= 2.0.6, < 2.1)
     temple (0.8.2)
-    tilt (2.0.10)
+    tilt (2.0.11)
 
 PLATFORMS
   ruby
@@ -26,9 +26,9 @@ PLATFORMS
 DEPENDENCIES
   httpclient
   json
-  rack (~> 2.1.4)
-  rack-protection (= 2.0.5)
-  sinatra (= 2.0.5)
+  rack (~> 2.2.4)
+  rack-protection (= 3.0.4)
+  sinatra (= 3.0.4)
   slim
 
 BUNDLED WITH
