@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-gem 'rack-protection', '2.0.5'
-gem 'sinatra', '2.0.5'
+gem 'rack-protection', '3.0.4'
+gem 'sinatra', '3.0.4'
 gem 'slim'
-gem 'rack', '~> 2.1.4'
+gem 'rack', '~> 2.2.4'
 gem 'httpclient'
 gem 'json'
